@@ -1,0 +1,52 @@
+# Secrets
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+.venv/
+
+# ML artifacts (too large for git)
+*.pth
+*.pt
+*.pkl
+*.joblib
+models/*.bin
+
+# Data files (may contain PII)
+data/*.csv
+data/*.parquet
+!data/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Catch nested data files (defense in depth)
+**/data/*.csv
+**/data/*.parquet

@@ -1,0 +1,33 @@
+{
+  "trained_at": "2026-04-29T07:54:13.130235+00:00",
+  "feature_columns": [
+    "tenure_days",
+    "total_orders",
+    "total_spend",
+    "avg_order_value",
+    "days_since_last_order",
+    "orders_per_month",
+    "unique_products",
+    "unique_payment_methods",
+    "weekday_order_ratio",
+    "tier_standard",
+    "tier_premium",
+    "tier_gold"
+  ],
+  "input_dim": 12,
+  "best_epoch": 8,
+  "best_val_loss": 1.049277949333191,
+  "pos_weight": 2.75,
+  "n_train": 105,
+  "n_val": 35,
+  "n_test": 36,
+  "train_churn_rate": 0.2666666805744171,
+  "seed": 42,
+  "hyperparameters": {
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "max_epochs": 100,
+    "early_stopping_patience": 15,
+    "weight_decay": 0.0001
+  }
+}
