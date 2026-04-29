@@ -40,12 +40,18 @@ class ChurnPredictor:
         # Load scaler
         self.scaler = joblib.load(scaler_path)
 
-        # Load model
-        self.model = ChurnNet(input_dim=self.metadata["input_dim"])
+        # Load model with architecture from metadata (supports v1 and v2)
+        hp = self.metadata.get("hyperparameters", {})
+        self.model = ChurnNet(
+            input_dim=self.metadata["input_dim"],
+            hidden1=hp.get("hidden1", 32),
+            hidden2=hp.get("hidden2", 16),
+            dropout=hp.get("dropout", 0.3),
+        )
         self.model.load_state_dict(torch.load(model_path, weights_only=True))
         self.model.eval()
 
-    def predict_one(self, features: dict[str, float], threshold: float = 0.5) -> dict[str, Any]:
+    def predict_one(self, features: dict[str, float], threshold: float | None = None) -> dict[str, Any]:
         """
         Predict churn for a single customer.
 
@@ -56,6 +62,11 @@ class ChurnPredictor:
         Returns:
             dict with churn_probability, churned_label, threshold_used
         """
+        # Use config default threshold if not specified
+        if threshold is None:
+            from config import settings
+            threshold = settings.CHURN_THRESHOLD
+
         # Validate all features present
         missing = set(self.feature_columns) - set(features.keys())
         if missing:
@@ -75,7 +86,7 @@ class ChurnPredictor:
             "threshold_used": threshold,
         }
 
-    def predict_batch(self, batch: list[dict[str, float]], threshold: float = 0.5) -> list[dict[str, Any]]:
+    def predict_batch(self, batch: list[dict[str, float]], threshold: float | None = None) -> list[dict[str, Any]]:
         """Predict for a list of customers."""
         return [self.predict_one(f, threshold) for f in batch]
 

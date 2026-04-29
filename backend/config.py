@@ -25,7 +25,7 @@ class Settings(BaseSettings):
 
     # Model
     MODEL_PATH: str = "models/churn_model.pth"
-    CHURN_THRESHOLD: float = 0.5
+    CHURN_THRESHOLD: float = 0.40
 
     model_config = SettingsConfigDict(
         env_file=".env",

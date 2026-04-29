@@ -58,7 +58,7 @@ class BatchPredictionRequest(BaseModel):
     """Batch input — list of customer feature sets."""
 
     customers: list[CustomerFeatures]
-    threshold: float = Field(default=0.5, ge=0, le=1, description="Override default threshold")
+    threshold: float | None = Field(default=None, ge=0, le=1, description="Override default threshold (uses config default if omitted)")
 
 
 class BatchPredictionResponse(BaseModel):

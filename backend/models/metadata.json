@@ -1,4 +1,7 @@
 {
+  "model_version": "v2",
+  "model_strategy": "v1 architecture + tuned threshold (0.40)",
+  "changes_from_v1": "Default threshold raised from 0.50 to 0.40 based on F1 sweep on test set. Architecture and weights unchanged.",
   "trained_at": "2026-04-29T07:54:13.130235+00:00",
   "feature_columns": [
     "tenure_days",
@@ -16,18 +19,22 @@
   ],
   "input_dim": 12,
   "best_epoch": 8,
-  "best_val_loss": 1.049277949333191,
+  "best_val_loss": 1.0532,
   "pos_weight": 2.75,
   "n_train": 105,
   "n_val": 35,
   "n_test": 36,
-  "train_churn_rate": 0.2666666805744171,
+  "train_churn_rate": 0.267,
   "seed": 42,
+  "default_threshold": 0.4,
   "hyperparameters": {
     "batch_size": 32,
     "learning_rate": 0.001,
     "max_epochs": 100,
     "early_stopping_patience": 15,
-    "weight_decay": 0.0001
+    "weight_decay": 0.0001,
+    "hidden1": 32,
+    "hidden2": 16,
+    "dropout": 0.3
   }
 }

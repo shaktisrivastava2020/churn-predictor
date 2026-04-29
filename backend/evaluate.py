@@ -32,7 +32,7 @@ DATA_PATH = "data/training.csv"
 MODEL_PATH = "models/churn_model.pth"
 SCALER_PATH = "models/scaler.joblib"
 REPORT_PATH = "models/eval_report.json"
-THRESHOLD = 0.5
+THRESHOLD = 0.40
 
 
 def load_test_set():
@@ -52,7 +52,16 @@ def main():
     scaler = joblib.load(SCALER_PATH)
     X_test_scaled = scaler.transform(X_test)
 
-    model = ChurnNet(input_dim=len(FEATURE_COLUMNS))
+    import json
+    with open('models/metadata.json') as mf:
+        meta = json.load(mf)
+    hp = meta.get('hyperparameters', {})
+    model = ChurnNet(
+        input_dim=len(FEATURE_COLUMNS),
+        hidden1=hp.get('hidden1', 32),
+        hidden2=hp.get('hidden2', 16),
+        dropout=hp.get('dropout', 0.3),
+    )
     model.load_state_dict(torch.load(MODEL_PATH, weights_only=True))
     model.eval()
 
