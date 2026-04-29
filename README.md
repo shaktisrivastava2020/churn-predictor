@@ -178,5 +178,9 @@ Or hit the [interactive Swagger docs](https://churn-api-218990051802.asia-south1
 
 ## Built by
 
-Shakti Srivastava — AI Product Manager building a 7-project sprint to demonstrate full-stack AI engineering range. [QuickShop AI](https://github.com/shaktisrivastava2020/quickshop-ai) (Day 1) covers RAG + NL2SQL. This is Day 2. More coming.
+**Shakti Srivastava**
+- An AI optimist and a researcher
+- GitHub: [@shaktisrivastava2020](https://github.com/shaktisrivastava2020)
+- Open to freelance AI/ML projects — RAG, NL2SQL, NLP, Deep Learning GenAI, ConvAI, Speech AI, Vision AI, Agentic, MCP, MLOps products on GCP & AWS
+
 
